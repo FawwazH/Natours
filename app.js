@@ -29,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Setting security HTTP headers
 app.use(helmet({ contentSecurityPolicy: false }) );
 
+//Random code
 
 app.use(morgan('dev'));
 

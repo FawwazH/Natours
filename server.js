@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 process.on('uncaughtException', err => {
     console.log('UNCAUGHT EXCEPTION!');
     console.log(err.name, err.message);
+    console.log('THE ERROR OCCURS HERE!');
     process.exit(1);
 });
 

@@ -6,7 +6,9 @@ export const login = async (email, password) => {
     try{
         const res = await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/v1/users/login',
+            //This only works because both from and back end are hosted
+            //on the same URL. Its a relative path ('/')
+            url: '/api/v1/users/login',
             //Specifying the body data (i.e. req.body)
             data: {
                 email: email,
@@ -31,7 +33,7 @@ export const logOut = async () => {
     try{
         const res = await axios({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/v1/users/logout'
+            url: '/api/v1/users/logout'
         })
         if(res.data.status === 'success') location.reload(true);
     }catch(err){

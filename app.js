@@ -8,6 +8,7 @@ const mongooseSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 //IMPORTS
 const AppError = require('./utils/appError');
@@ -79,6 +80,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(compression());
 
 //Mounting a new router on a route in this case we are mounting the
 //new router (tourRoute and userRoute) on the corresponding route
@@ -94,9 +96,6 @@ app.all('*', (req, res, next) => {
 
 //ERROR HANDLING MIDDLEWARE
 app.use(globalErrorHandler);
-
-
-
 
 module.exports = app;
 

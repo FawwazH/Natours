@@ -44,7 +44,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "engines": {
-    "node": "12.7.0",
+    "node": "^12",
     "npm": "6.10.0"
   }
 }

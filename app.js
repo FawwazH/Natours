@@ -9,6 +9,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 //IMPORTS
 const AppError = require('./utils/appError');
@@ -28,6 +29,44 @@ app.enable('trust proxy');
 app.set('view engine', 'pug');
 //The templates are the view in MVC
 app.set('views', path.join(__dirname, 'views'));
+
+//CORS - cross origin resource sharing. For example say we have our
+//app at https://natourscopy.herokuapp.com/api/v1/tours and some other
+//website such as example.com is trying to access our API. This is called
+//a cross origin request because herokuapp.com is a different domain
+// than example.com. Usually cross origin requests are not allowed 
+//and by default will fail unless we implement CORS. This only applies
+//to requests made in the browser e.g. fetch/axios. Meaning that from
+//the server we will always be able to make cross-origin requests without
+//restrictions. To be considered cross-origin a request might come from
+//a different domain, different subdomain, different protocol or 
+//even a different port are considered a cross origin request.
+//Now implementing cross origin sharing resource
+//This add a couple of headers to our response 
+//Access-Control-Allow-Origin * this means to allow all requests wherever
+//they are coming from. This middleware only works for simpled requests
+//such as GET and POST requests.
+app.use(cors());
+
+//Imagine if we had our API at api.natours.com but our front end app
+//at natours.com so we only would want to allow access from the 
+//natours.com origin we would use:
+// app.use(cors({
+//     origin: 'https://www.natours.com'
+// }))
+
+//Non simple requests, PUT, PATCH and DELETE or requests that send cookies
+//These require a pre-flight phase. Whenever there is a non-simple request
+// the browser we automatically issue the preflight phase. So before
+//the real request actually happens the browser first does an option 
+//request in order to figure out if the actual request is safe to send
+//So on the server we would need to respond to that options request 
+//Options is just another HTTP method. We would need to send back the
+//same Access-Control-Allow-Origin header and this way, the browser
+//will know the actual request is safe to perform and executes the req
+app.options('*', cors());
+//We could also only allow these non simple requests on specific routes
+//app.options('/api/v1/tours/:id', cors());
 
 
 //Serving static files
@@ -91,7 +130,9 @@ app.use(compression());
 //Mounting a new router on a route in this case we are mounting the
 //new router (tourRoute and userRoute) on the corresponding route
 app.use('/', viewRouter);
-app.use('/api/v1/tours', tourRouter);
+//Enabling CORS on a specific route
+// app.use('/api/v1/tours', app.use(cors()), tourRouter);
+app.use('/api/v1/tours', app.use(cors()), tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);

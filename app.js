@@ -18,6 +18,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controller/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 
 
@@ -90,10 +91,24 @@ const limiter = rateLimit({
 //Affect all of the routes that start with /api
 app.use('/api',limiter);
 
+//Stripe web hook. This route was defined in app.js and not
+//in bookingRouter because in the webhookCheckout handler function,
+//when we receive the body from Stripe, the Stripe function
+//we are going to use to actually read the body needs this 
+//body in raw form (i.e. not as JSON). The conversion to JSON
+//occurs in app.use(express.json), so we put this middleware before
+app.post('/webhook-checkout',
+express.raw({type: 'application/json'}), 
+bookingController.webhookCheckout);
+
+
 //Body parser, reading data from body into req.body
 app.use(express.json({
     limit: '10kb'
 }));
+
+
+
 
 //Parses information from a form
 app.use(express.urlencoded({extended: true, limit: '10kb'}));

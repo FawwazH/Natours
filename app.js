@@ -46,7 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 //Access-Control-Allow-Origin * this means to allow all requests wherever
 //they are coming from. This middleware only works for simpled requests
 //such as GET and POST requests.
-app.use(cors());
+    //app.use(cors());
 
 //Imagine if we had our API at api.natours.com but our front end app
 //at natours.com so we only would want to allow access from the 
@@ -64,7 +64,7 @@ app.use(cors());
 //Options is just another HTTP method. We would need to send back the
 //same Access-Control-Allow-Origin header and this way, the browser
 //will know the actual request is safe to perform and executes the req
-app.options('*', cors());
+    //app.options('*', cors());
 //We could also only allow these non simple requests on specific routes
 //app.options('/api/v1/tours/:id', cors());
 

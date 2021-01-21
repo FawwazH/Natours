@@ -5,10 +5,10 @@ const dotenv = require('dotenv');
 //synchronous code but are not handled anywhere
 process.on('uncaughtException', err => {
     console.log('UNCAUGHT EXCEPTION!');
-    console.log(err.name, err.message);
-    console.log('THE ERROR OCCURS HERE!');
+    console.log(err);
     process.exit(1);
 });
+
 
 dotenv.config({path: './config.env'});
 const app = require('./app');
@@ -30,7 +30,8 @@ const DB = process.env.DATABASE.replace
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology:true
 }).then(() => {
     console.log('DB connection successful!');
 })

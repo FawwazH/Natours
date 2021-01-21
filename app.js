@@ -27,6 +27,7 @@ app.enable('trust proxy');
 
 //Setting up PUG template engine
 app.set('view engine', 'pug');
+
 //The templates are the view in MVC
 app.set('views', path.join(__dirname, 'views'));
 

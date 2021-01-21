@@ -13,7 +13,7 @@ const signToken = id => {
 };
 
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
     //Sending JWT via Cookie
     //A cookie is a small piece of text a server can send to 
     //clients. When the client receives a cookie, it will
@@ -28,10 +28,12 @@ const createSendToken = (user, statusCode, res) => {
         //The cookie will only be sent on a secure conn, only using HTTPS
         //secure: true,
         //So the cookie can not be accessed or modified in any way by the browser
-        httpOnly: true
+        httpOnly: true,
+        //Only if the request is secure and the x-forward is for heroku
+        secure: req.secure || req.headers['x-forward-proto'] === 'https'
     }
-    if(process.env.NODE_ENV === 'production')
-    cookieOptions.secure = true;
+    
+    
     res.cookie('jwt', token, cookieOptions)
 
     //Remove pw from output
@@ -69,7 +71,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     const token = signToken(newUser._id)
 
     //Now sending the token to the client in the response
-    createSendToken(newUser, 201, res);
+    createSendToken(newUser, 201, req, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -105,7 +107,7 @@ exports.login = catchAsync(async (req, res, next) => {
         return next (new AppError('Incorrect email or password',
         401));
     }
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
 });
 
 
@@ -323,7 +325,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     //This was done in a document middleware function
 
     //4. Log in user, send JWT
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
 
 });
 
@@ -349,7 +351,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     //Also, the pre-save middlewares would not run either
 
   //4. Log the user in, send JWT 
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 });
 
 

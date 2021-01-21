@@ -18,6 +18,12 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
+
+
+
+//To trust proxies - Heroku configuration
+app.enable('trust proxy');
+
 //Setting up PUG template engine
 app.set('view engine', 'pug');
 //The templates are the view in MVC

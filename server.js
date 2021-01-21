@@ -11,7 +11,7 @@ process.on('uncaughtException', err => {
 
 dotenv.config({path: './config.env'});
 const app = require('./app');
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //Environment variables are global variables that are used to 
 //define the environments  in which a node app is running

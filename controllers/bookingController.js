@@ -1,7 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
 const Tour = require('./../models/tourModel');
-const User = require('./../models/userModel');
 const Booking = require('./../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
@@ -75,7 +73,7 @@ const createBookingCheckout = async session => {
 
 
 
-exports.webHookCheckout = (req, res, next) => {
+exports.webhookCheckout = (req, res, next) => {
   //1. Read Stripe signature out of the header
   const signature = req.headers['stripe-signature'];
   let event;

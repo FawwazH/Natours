@@ -109,7 +109,6 @@ app.use(express.json({
 
 
 
-
 //Parses information from a form
 app.use(express.urlencoded({extended: true, limit: '10kb'}));
 

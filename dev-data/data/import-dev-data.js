@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const Tour = require('./../../models/tourModel');
 const Review = require('./../../models/reviewModel');
 const User = require('./../../models/userModel');
-const { deleteMany } = require('./../../models/tourModel');
+// const { deleteMany } = require('./../../models/tourModel');
 
 //Environment variables are global variables that are used to 
 //define the environments  in which a node app is running

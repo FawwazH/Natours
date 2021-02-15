@@ -68,7 +68,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     //Log the new user in as soon as they sign up
     //The ID is the payload
     //The option we pass is the time after which the token is invalid
-    const token = signToken(newUser._id)
+    //const token = signToken(newUser._id)
 
     //Now sending the token to the client in the response
     createSendToken(newUser, 201, req, res);

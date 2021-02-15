@@ -1,0 +1,89 @@
+/*Laptop screen down to 1200*/
+@media only screen and (max-width: 1200px) {
+}
+
+/*Small tablet to big tablet 768 - 1022 pixels*/
+@media only screen and (max-width: 1023px) {
+  .header {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .nav--tours {
+    flex: 0 1 40%;
+    margin-bottom: 0rem;
+  }
+
+  .header__logo {
+    flex: 0 1 20%;
+    margin-bottom: 0rem;
+    order: 0;
+    text-align: center;
+  }
+
+  .nav--user {
+    flex: 0 1 40%;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*All phones tablets smaller than the iPad 481-767 pixels*/
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 47%;
+  }
+
+  .header {
+    padding: 3rem;
+  }
+
+  .nav--tours {
+    display: flex;
+    flex: 0 1 33%;
+    margin-bottom: 0rem;
+    align-items: revert;
+  }
+
+  .header__logo {
+    flex: 0 1 33%;
+    text-align: center;
+  }
+
+  .nav--user {
+    display: flex;
+    flex: 0 1 34%;
+    flex-direction: row;
+  }
+
+  .nav__el:not(:last-child) {
+    margin-right: 2rem;
+    margin-bottom: 0rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/*These rules will aplly when the width of the device or browser is less than oer equal to 480 pixels (Width of old iPhones) 320-480 pixles*/
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 41%;
+  }
+
+  .header {
+    padding: 1.5rem;
+  }
+
+  .header__logo img {
+    height: 2.7rem;
+  }
+
+  .footer__nav {
+    width: 125%;
+    font-weight: 600;
+  }
+}

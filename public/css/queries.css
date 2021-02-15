@@ -86,4 +86,8 @@
     width: 125%;
     font-weight: 600;
   }
+
+  .form__input {
+    width: 114%;
+  }
 }

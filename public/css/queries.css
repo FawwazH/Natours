@@ -28,6 +28,14 @@
   .card-container {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Tour page */
+  .section-header {
+    height: 45vw;
+  }
+  .section-pictures {
+    height: 27vw;
+  }
 }
 
 /*All phones tablets smaller than the iPad 481-767 pixels*/
@@ -66,6 +74,23 @@
   .card-container {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  /* Tour page */
+  .section-header {
+    height: 52vw;
+  }
+
+  .overview-box {
+    padding: 10rem 1rem;
+  }
+
+  .section-pictures {
+    height: 31vw;
+  }
+
+  .btn {
+    font-size: 1.4rem;
+  }
 }
 
 /*These rules will aplly when the width of the device or browser is less than oer equal to 480 pixels (Width of old iPhones) 320-480 pixles*/
@@ -89,5 +114,20 @@
 
   .form__input {
     width: 114%;
+  }
+
+  /* Tour page */
+  .section-header {
+    height: 66vw;
+  }
+
+  .section-pictures {
+    height: 39vw;
+  }
+
+  .section-cta {
+    padding: 0rem;
+    width: 100%;
+    margin: 0 auto;
   }
 }

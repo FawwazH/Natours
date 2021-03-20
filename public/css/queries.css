@@ -9,6 +9,10 @@
     justify-content: center;
   }
 
+  .section-header {
+    height: 62vw;
+  }
+
   .nav--tours {
     flex: 0 1 40%;
     margin-bottom: 0rem;
@@ -97,6 +101,9 @@
 @media only screen and (max-width: 480px) {
   html {
     font-size: 41%;
+  }
+  .section-header {
+    height: 86vw;
   }
 
   .header {
